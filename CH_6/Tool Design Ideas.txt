@@ -1,0 +1,44 @@
+LAB A
+Name: Get-ComputerInfo
+Parameters: 	[string] $ComputerName
+		[string] $ErrorLog = 'C:\Errors.txt'
+		[switch] $LogErrors
+
+$comp = get-ciminstance -ClassName Win32_ComputerSystem
+$bios = get-ciminstance -ClassName Win32_BIOS
+$os = get-ciminstance -ClassName Win32_OperatingSystem
+
+Switch statement to display the returned AdminPasswordStatus
+	switch ($comp.AdminPasswordStatus) {
+		1 { $adminpw = 'Disabled' }
+		2 { $adminpw = 'Enabled' }
+		3 { $adminpw = 'NA' }
+		default { $adminpw = 'Unknown' }
+
+Create hashtable and place contents into a new PSObject in the
+ same order as that of your custom view.
+
+Function can get computers to query or have them piped in from another command
+
+
+LAB B
+Name: Get-DiskInfo
+Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch}
+CustomView - Computername, Drive, Freespace, Size
+
+Create hashtable and place contents into a new PSObject in the
+ same order as the custom view.
+
+$disks = get-ciminstance -class Win32_Volume
+
+Function can get computers to query or have them piped in from another command
+
+LAB C
+Get-RunningServices
+Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch}
+
+Displays - Process name, virtual memory size
+Optional values - peak page file usage, thread count
+CustomView - Computername, Drive, Freespace, Size
+
+Function can get computers to query or have them piped in from another command
