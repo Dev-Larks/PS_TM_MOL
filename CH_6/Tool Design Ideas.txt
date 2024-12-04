@@ -39,6 +39,6 @@ Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch}
 
 Displays - Process name, virtual memory size
 Optional values - peak page file usage, thread count
-CustomView - Computername, Drive, Freespace, Size
+CustomView - Computername, Displayname, ServiceName, ProcessName, ThreadCount, VMSize, PeakPageFile
 
 Function can get computers to query or have them piped in from another command
