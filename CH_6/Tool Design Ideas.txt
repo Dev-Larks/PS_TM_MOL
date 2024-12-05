@@ -22,23 +22,30 @@ Function can get computers to query or have them piped in from another command
 
 
 LAB B
-Name: Get-DiskInfo
-Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch}
+Name: Get-FixedDiskInfo
+Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch]
 CustomView - Computername, Drive, Freespace, Size
 
-Create hashtable and place contents into a new PSObject in the
- same order as the custom view.
-
 $disks = get-ciminstance -class Win32_Volume
+Only fixed disks to be captured in $disks variable
+
+Create hashtable and place contents into a new PSObject in the same order as the custom view.
 
 Function can get computers to query or have them piped in from another command
 
+
 LAB C
-Get-RunningServices
-Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch}
+Get-ServiceInfo
+Parameters: ComputerName, ErrorLog C:\Errors.txt, LogErrors [Switch]
+
+$services = get-object -class win32_service -filter "State = 'Running'"
+$process = get-wmiobject -class win32_process -filter "ProcessId = $($service.processid)"
+
+Get services and add required values to hashtable
+Match service and process Ids and write process info to hashtable 
 
 Displays - Process name, virtual memory size
-Optional values - peak page file usage, thread count
+Optional values - Peak page file usage, thread count
 CustomView - Computername, Displayname, ServiceName, ProcessName, ThreadCount, VMSize, PeakPageFile
 
 Function can get computers to query or have them piped in from another command
