@@ -7,7 +7,7 @@ function Get-CoreSystemInfo {
     )
     
     BEGIN {
-        
+
     }
     
     PROCESS {
@@ -33,5 +33,4 @@ function Get-CoreSystemInfo {
     }
 }
 
-Get-CoreSystemInfo -ComputerName localhost, two, three
-Get-CoreSystemInfo localhost x.txt
+Get-CoreSystemInfo -ComputerName localhost, localhost -ErrorLog "C:\Temp\OfflineSystems.txt"
